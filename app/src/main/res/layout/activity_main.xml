@@ -1,0 +1,141 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title for the Application -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculateur Intérêt"
+            android:textSize="24sp"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="16dp"/>
+
+        <!-- Input Fields -->
+        <EditText
+            android:id="@+id/tauxInteretAnnuel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Taux d'intérêt annuel"
+            android:inputType="numberDecimal"/>
+
+        <EditText
+            android:id="@+id/dureePret"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre d’années"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/montantHypotheque"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Montant de l’hypothèque"
+            android:inputType="numberDecimal"/>
+
+        <!-- Buttons side by side -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/boutonCalculer"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Calculer"
+                android:onClick="onCalculateClicked"/>
+
+            <Button
+                android:id="@+id/boutonRecommencer"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Recommencer"
+                android:onClick="onRecommencerClicked"/>
+
+        </LinearLayout>
+
+        <!-- Results Display using non-editable EditTexts -->
+        <EditText
+            android:id="@+id/annualInterestDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:focusable="false"
+            android:background="@android:color/darker_gray"
+            android:hint="Taux d'intérêt annuel:"/>
+
+        <EditText
+            android:id="@+id/loanAmountDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:focusable="false"
+            android:background="@android:color/darker_gray"
+            android:hint="Montant de l’hypothèque:"/>
+
+        <EditText
+            android:id="@+id/monthlyPaymentDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:focusable="false"
+            android:background="@android:color/darker_gray"
+            android:hint="Montant à payer chaque mois:"/>
+
+        <EditText
+            android:id="@+id/totalPaymentDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:focusable="false"
+            android:background="@android:color/darker_gray"
+            android:hint="Montant total à payer:"/>
+
+        <EditText
+            android:id="@+id/differenceDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:focusable="false"
+            android:background="@android:color/darker_gray"
+            android:hint="Différence montant emprunté et total:"/>
+
+        <!-- Save & Saved Calculations buttons side by side -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/boutonSauvegarder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Sauvegarder"
+                android:onClick="onSaveClicked"/>
+
+            <Button
+                android:id="@+id/boutonCalculsSauvegardes"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Calculs Sauvegardés"
+                android:onClick="onSavedCalculationsClicked"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
