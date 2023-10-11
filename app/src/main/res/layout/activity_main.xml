@@ -68,7 +68,7 @@
 
         <!-- Results Display using non-editable EditTexts -->
         <EditText
-            android:id="@+id/annualInterestDisplay"
+            android:id="@+id/affichageInteretAnnuel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
@@ -77,7 +77,7 @@
             android:hint="Taux d'intérêt annuel:"/>
 
         <EditText
-            android:id="@+id/loanAmountDisplay"
+            android:id="@+id/affichageMontantEmprunt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
@@ -86,7 +86,7 @@
             android:hint="Montant de l’hypothèque:"/>
 
         <EditText
-            android:id="@+id/monthlyPaymentDisplay"
+            android:id="@+id/affichagePaiementMensuel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
@@ -95,7 +95,7 @@
             android:hint="Montant à payer chaque mois:"/>
 
         <EditText
-            android:id="@+id/totalPaymentDisplay"
+            android:id="@+id/affichagePaiementTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
@@ -104,7 +104,7 @@
             android:hint="Montant total à payer:"/>
 
         <EditText
-            android:id="@+id/differenceDisplay"
+            android:id="@+id/affichageDifference"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"

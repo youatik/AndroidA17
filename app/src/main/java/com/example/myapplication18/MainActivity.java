@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText montantHypotheque;
 
     // Result fields
-    private EditText annualInterestDisplay;
-    private EditText loanAmountDisplay;
-    private EditText monthlyPaymentDisplay;
-    private EditText totalPaymentDisplay;
-    private EditText differenceDisplay;
+    private EditText affichageInteretAnnuel;
+    private EditText affichageMontantEmprunt;
+    private EditText affichagePaiementMensuel;
+    private EditText affichagePaiementTotal;
+    private EditText affichageDifference;
 
     private CalculateurHypotheque calculateur = new CalculateurHypotheque();
     private DatabaseHelper dbHelper;
@@ -41,16 +41,24 @@ public class MainActivity extends AppCompatActivity {
         montantHypotheque = findViewById(R.id.montantHypotheque);
 
         // Result fields
-        annualInterestDisplay = findViewById(R.id.annualInterestDisplay);
-        loanAmountDisplay = findViewById(R.id.loanAmountDisplay);
-        monthlyPaymentDisplay = findViewById(R.id.monthlyPaymentDisplay);
-        totalPaymentDisplay = findViewById(R.id.totalPaymentDisplay);
-        differenceDisplay = findViewById(R.id.differenceDisplay);
+        affichageInteretAnnuel = findViewById(R.id.affichageInteretAnnuel);
+        affichageMontantEmprunt = findViewById(R.id.affichageMontantEmprunt);
+        affichagePaiementMensuel = findViewById(R.id.affichagePaiementMensuel);
+        affichagePaiementTotal = findViewById(R.id.affichagePaiementTotal);
+        affichageDifference = findViewById(R.id.affichageDifference);
+
 
         dbHelper = new DatabaseHelper(this);
     }
 
     public void onCalculateClicked(View view) {
+
+        if (tauxInteretAnnuel.getText().toString().isEmpty() ||
+                dureePret.getText().toString().isEmpty() ||
+                montantHypotheque.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Veuillez remplir tous les champs!", Toast.LENGTH_LONG).show();
+            return;
+        }
         // Parsing input values
         double taux = Double.parseDouble(tauxInteretAnnuel.getText().toString());
         int annees = Integer.parseInt(dureePret.getText().toString());
@@ -64,11 +72,11 @@ public class MainActivity extends AppCompatActivity {
             double difference = totalPaiement - montant;
 
             // Displaying results
-            annualInterestDisplay.setText("Taux d'intérêt annuel: " + String.format(Locale.FRANCE, "%.2f", taux) + "%");
-            loanAmountDisplay.setText("Montant de l’hypothèque: " + String.format(Locale.FRANCE, "$%.2f", montant));
-            monthlyPaymentDisplay.setText("Montant à payer chaque mois: " + String.format(Locale.FRANCE, "$%.2f", mensualite));
-            totalPaymentDisplay.setText("Montant total à payer: " + String.format(Locale.FRANCE, "$%.2f", totalPaiement));
-            differenceDisplay.setText("Différence montant emprunté et total: " + String.format(Locale.FRANCE, "$%.2f", difference));
+            affichageInteretAnnuel.setText("Taux d'intérêt annuel: " + String.format(Locale.FRANCE, "%.2f", taux) + "%");
+            affichageMontantEmprunt.setText("Montant de l’hypothèque: " + String.format(Locale.FRANCE, "$%.2f", montant));
+            affichagePaiementMensuel.setText("Montant à payer chaque mois: " + String.format(Locale.FRANCE, "$%.2f", mensualite));
+            affichagePaiementTotal.setText("Montant total à payer: " + String.format(Locale.FRANCE, "$%.2f", totalPaiement));
+            affichageDifference.setText("Différence montant emprunté et total: " + String.format(Locale.FRANCE, "$%.2f", difference));
 
         } else {
             // If validation fails, display an error toast
@@ -82,16 +90,16 @@ public class MainActivity extends AppCompatActivity {
         tauxInteretAnnuel.setText("");
         dureePret.setText("");
         montantHypotheque.setText("");
-        annualInterestDisplay.setText("");
-        loanAmountDisplay.setText("");
-        monthlyPaymentDisplay.setText("");
-        totalPaymentDisplay.setText("");
-        differenceDisplay.setText("");
+        affichageInteretAnnuel.setText("");
+        affichageMontantEmprunt.setText("");
+        affichagePaiementMensuel.setText("");
+        affichagePaiementTotal.setText("");
+        affichageDifference.setText("");
     }
 
     public void onSaveClicked(View view) {
         //"Taux d'intérêt annuel: 10,00%" devient "10.00"
-        String tauxString = annualInterestDisplay.getText().toString()
+        String tauxString = affichageInteretAnnuel.getText().toString()
                 .replace("Taux d'intérêt annuel: ", "")
                 .replace("%", "")
                 .replace(",", ".")
@@ -99,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         double taux = Double.parseDouble(tauxString);
 
         // "Montant de l’hypothèque: $123,45" devient "123.45"
-        String montantString = loanAmountDisplay.getText().toString()
+        String montantString = affichageMontantEmprunt.getText().toString()
                 .replace("Montant de l’hypothèque: ", "")
                 .replace("$", "")
                 .replace(",", ".")
@@ -109,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         int annees = Integer.parseInt(dureePret.getText().toString().trim());
 
         // "Montant à payer chaque mois: $456,78" devient "456.78"
-        String mensualiteString = monthlyPaymentDisplay.getText().toString()
+        String mensualiteString = affichagePaiementMensuel.getText().toString()
                 .replace("Montant à payer chaque mois: ", "")
                 .replace("$", "")
                 .replace(",", ".")
